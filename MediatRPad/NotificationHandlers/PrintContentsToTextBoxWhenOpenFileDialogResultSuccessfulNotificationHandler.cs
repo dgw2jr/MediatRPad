@@ -1,8 +1,9 @@
 ﻿using System.IO;
 using MediatR;
 using MediatRPad.Controls;
+using MediatRPad.Notifications;
 
-namespace MediatRPad
+namespace MediatRPad.NotificationHandlers
 {
     public class PrintContentsToTextBoxWhenOpenFileDialogResultSuccessfulNotificationHandler : INotificationHandler<OpenFileDialogResultSuccessfulNotification>
     {

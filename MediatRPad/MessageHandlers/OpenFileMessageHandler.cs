@@ -1,6 +1,7 @@
 ﻿using System.Windows.Forms;
 using MediatR;
 using MediatRPad.Messages;
+using MediatRPad.Notifications;
 using MediatRPad.Properties;
 
 namespace MediatRPad.MessageHandlers
