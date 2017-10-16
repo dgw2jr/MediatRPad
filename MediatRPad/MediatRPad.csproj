@@ -59,6 +59,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="MessageHandlers\OpenFileMessageHandler.cs" />
+    <Compile Include="NotificationHandlers\SaveTextBoxContentsToFileWhenSaveFileDialogResultSuccessfulNotificationHandler.cs" />
+    <Compile Include="Notifications\SaveFileDialogResultSuccessfulNotification.cs" />
     <Compile Include="Messages\AboutMessage.cs" />
     <Compile Include="MessageHandlers\AboutMessageHandler.cs" />
     <Compile Include="Controls\ButtonConfiguration.cs" />
