@@ -21,11 +21,14 @@ namespace MediatRPad.MessageHandlers
                 Filter = Resources.OpenFileDialog_Filter
             };
 
-            if (dlg.ShowDialog() == DialogResult.Cancel) return;
+            if (dlg.ShowDialog() != DialogResult.OK)
+            {
+                return;
+            }
 
             using (var stream = dlg.OpenFile())
             {
-                _mediator.Publish(new OpenFileDialogResultSuccessfulNotification { FileStream = stream });
+                _mediator.Publish(new OpenFileDialogResultSuccessfulNotification {FileStream = stream});
             }
         }
     }
