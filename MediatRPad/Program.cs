@@ -8,6 +8,7 @@ using Autofac.Extras.AttributeMetadata;
 using Autofac.Features.Metadata;
 using MediatR;
 using MediatRPad.Controls;
+using MediatRPad.Notifications.PipelineBehaviors;
 
 namespace MediatRPad
 {
@@ -74,7 +75,8 @@ namespace MediatRPad
                                                || i.IsClosedTypeOf(typeof(ICancellableAsyncNotificationHandler<>))
                     )
                 )
-                .AsImplementedInterfaces();
+                .AsImplementedInterfaces()
+                .InstancePerLifetimeScope();
 
             // request handlers
             builder.Register<SingleInstanceFactory>(ctx =>
@@ -91,6 +93,12 @@ namespace MediatRPad
                     return t => (IEnumerable<object>)c.Resolve(typeof(IEnumerable<>).MakeGenericType(t));
                 })
                 .InstancePerLifetimeScope();
+
+#if DEBUG
+            builder.RegisterGeneric(typeof(DebugMessageTimingsBehavior<,>))
+                .As(typeof(IPipelineBehavior<,>))
+                .InstancePerLifetimeScope();
+#endif
 
             return builder.Build();
         }
