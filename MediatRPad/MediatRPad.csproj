@@ -58,6 +58,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="MessageHandlers\OpenFileMessageHandler.cs" />
     <Compile Include="Messages\AboutMessage.cs" />
     <Compile Include="MessageHandlers\AboutMessageHandler.cs" />
     <Compile Include="Controls\ButtonConfiguration.cs" />
@@ -71,9 +72,8 @@
     <Compile Include="Controls\MainToolStripContainer.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Messages\OpenFileMessage.cs" />
     <Compile Include="Notifications\OpenFileDialogResultSuccessfulNotification.cs" />
-    <Compile Include="Messages\OpenTextFileMessage.cs" />
-    <Compile Include="MessageHandlers\OpenTextFileMessageHandler.cs" />
     <Compile Include="NotificationHandlers\PrintContentsToTextBoxWhenOpenFileDialogResultSuccessfulNotificationHandler.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

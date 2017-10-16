@@ -5,16 +5,16 @@ using MediatRPad.Properties;
 
 namespace MediatRPad.MessageHandlers
 {
-    public class OpenTextFileMessageHandler : IRequestHandler<OpenTextFileMessage>
+    public class OpenFileMessageHandler : IRequestHandler<OpenFileMessage>
     {
         private readonly IMediator _mediator;
 
-        public OpenTextFileMessageHandler(IMediator mediator)
+        public OpenFileMessageHandler(IMediator mediator)
         {
             _mediator = mediator;
         }
 
-        public void Handle(OpenTextFileMessage message)
+        public void Handle(OpenFileMessage message)
         {
             var dlg = new OpenFileDialog
             {
