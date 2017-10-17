@@ -63,6 +63,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="MessageHandlers\OpenFileMessageHandler.cs" />
+    <Compile Include="MessageHandlers\PrintFileMessageHandler.cs" />
+    <Compile Include="Messages\PrintFileMessage.cs" />
     <Compile Include="Modules\MediatRModule.cs" />
     <Compile Include="NotificationHandlers\SaveTextBoxContentsToFileWhenSaveFileDialogResultSuccessfulNotificationHandler.cs" />
     <Compile Include="Notifications\PipelineBehaviors\DebugMessageTimingsBehavior.cs" />

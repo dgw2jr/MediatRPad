@@ -50,7 +50,7 @@ namespace MediatRPad
                 var mediator = ctx.Resolve<IMediator>();
                 var button = new ButtonConfiguration
                 {
-                    Text = (string) m.Metadata["Text"],
+                    Text = (string)m.Metadata["Text"],
                     Order = (int)m.Metadata["Order"]
                 };
 

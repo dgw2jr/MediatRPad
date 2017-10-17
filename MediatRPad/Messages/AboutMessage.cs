@@ -3,6 +3,6 @@ using MediatRPad.Controls;
 
 namespace MediatRPad.Messages
 {
-    [ToolBarButtonMetaData("About", 3)]
+    [ToolBarButtonMetaData("About", 4)]
     public class AboutMessage : IRequest { }
 }
