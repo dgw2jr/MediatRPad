@@ -2,9 +2,7 @@
 using System.Collections.Generic;
 using Autofac;
 using MediatR;
-using System.Reflection;
 using MediatRPad.Notifications.PipelineBehaviors;
-using Module = Autofac.Module;
 
 namespace MediatRPad.Modules
 {
@@ -24,7 +22,8 @@ namespace MediatRPad.Modules
                     .AsClosedTypesOf(handlerInterface);
             }
 
-            builder.RegisterAssemblyTypes(typeof(IMediator).GetTypeInfo().Assembly).AsImplementedInterfaces();
+            builder.RegisterAssemblyTypes(typeof(IMediator).Assembly)
+                .AsImplementedInterfaces();
 
             // request handlers
             builder.Register<SingleInstanceFactory>(ctx =>
