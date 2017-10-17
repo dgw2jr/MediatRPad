@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Reflection;
 using System.Windows.Forms;
 using Autofac;
@@ -8,7 +6,6 @@ using Autofac.Extras.AttributeMetadata;
 using Autofac.Features.Metadata;
 using MediatR;
 using MediatRPad.Controls;
-using MediatRPad.Notifications.PipelineBehaviors;
 
 namespace MediatRPad
 {
@@ -62,44 +59,8 @@ namespace MediatRPad
                 return button;
             });
 
-            builder.RegisterAssemblyTypes(typeof(IMediator).GetTypeInfo().Assembly).AsImplementedInterfaces();
-
-            builder.RegisterAssemblyTypes(thisAssembly).Where(t =>
-                    t.GetInterfaces().Any(i => i.IsClosedTypeOf(typeof(IRequestHandler<>))
-                                               || i.IsClosedTypeOf(typeof(IRequestHandler<,>))
-                                               || i.IsClosedTypeOf(typeof(IAsyncRequestHandler<,>))
-                                               || i.IsClosedTypeOf(typeof(IAsyncRequestHandler<>))
-                                               || i.IsClosedTypeOf(typeof(ICancellableAsyncRequestHandler<,>))
-                                               || i.IsClosedTypeOf(typeof(INotificationHandler<>))
-                                               || i.IsClosedTypeOf(typeof(IAsyncNotificationHandler<>))
-                                               || i.IsClosedTypeOf(typeof(ICancellableAsyncNotificationHandler<>))
-                    )
-                )
-                .AsImplementedInterfaces()
-                .InstancePerLifetimeScope();
-
-            // request handlers
-            builder.Register<SingleInstanceFactory>(ctx =>
-                {
-                    var c = ctx.Resolve<IComponentContext>();
-                    return t => c.ResolveOptional(t);
-                })
-                .InstancePerLifetimeScope();
-
-            // notification handlers
-            builder.Register<MultiInstanceFactory>(ctx =>
-                {
-                    var c = ctx.Resolve<IComponentContext>();
-                    return t => (IEnumerable<object>)c.Resolve(typeof(IEnumerable<>).MakeGenericType(t));
-                })
-                .InstancePerLifetimeScope();
-
-#if DEBUG
-            builder.RegisterGeneric(typeof(DebugMessageTimingsBehavior<,>))
-                .As(typeof(IPipelineBehavior<,>))
-                .InstancePerLifetimeScope();
-#endif
-
+            builder.RegisterAssemblyModules(thisAssembly);
+            
             return builder.Build();
         }
     }
