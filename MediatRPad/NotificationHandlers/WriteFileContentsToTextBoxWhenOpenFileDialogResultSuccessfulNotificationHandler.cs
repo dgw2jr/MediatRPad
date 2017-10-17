@@ -5,11 +5,11 @@ using MediatRPad.Notifications;
 
 namespace MediatRPad.NotificationHandlers
 {
-    public class PrintContentsToTextBoxWhenOpenFileDialogResultSuccessfulNotificationHandler : INotificationHandler<OpenFileDialogResultSuccessfulNotification>
+    public class WriteFileContentsToTextBoxWhenOpenFileDialogResultSuccessfulNotificationHandler : INotificationHandler<OpenFileDialogResultSuccessfulNotification>
     {
         private readonly FileContentsTextBox _textBox;
 
-        public PrintContentsToTextBoxWhenOpenFileDialogResultSuccessfulNotificationHandler(FileContentsTextBox textBox)
+        public WriteFileContentsToTextBoxWhenOpenFileDialogResultSuccessfulNotificationHandler(FileContentsTextBox textBox)
         {
             _textBox = textBox;
         }

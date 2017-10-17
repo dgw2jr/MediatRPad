@@ -82,7 +82,7 @@
     </Compile>
     <Compile Include="Messages\OpenFileMessage.cs" />
     <Compile Include="Notifications\OpenFileDialogResultSuccessfulNotification.cs" />
-    <Compile Include="NotificationHandlers\PrintContentsToTextBoxWhenOpenFileDialogResultSuccessfulNotificationHandler.cs" />
+    <Compile Include="NotificationHandlers\WriteFileContentsToTextBoxWhenOpenFileDialogResultSuccessfulNotificationHandler.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Messages\SaveFileMessage.cs" />
