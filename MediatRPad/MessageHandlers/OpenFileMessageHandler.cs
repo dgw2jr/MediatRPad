@@ -29,7 +29,7 @@ namespace MediatRPad.MessageHandlers
 
             using (var stream = dlg.OpenFile())
             {
-                _mediator.Publish(new OpenFileDialogResultSuccessfulNotification {FileStream = stream});
+                _mediator.Publish(new OpenFileDialogResultSuccessfulNotification { FileStream = stream, FileName = dlg.FileName });
             }
         }
     }

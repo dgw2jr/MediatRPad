@@ -62,11 +62,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controls\BottomStatusStrip.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controls\BottomStatusStripLabel.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="MessageHandlers\OpenFileMessageHandler.cs" />
     <Compile Include="MessageHandlers\PrintFileMessageHandler.cs" />
     <Compile Include="Messages\PrintFileMessage.cs" />
     <Compile Include="Modules\MediatRModule.cs" />
     <Compile Include="NotificationHandlers\SaveTextBoxContentsToFileWhenSaveFileDialogResultSuccessfulNotificationHandler.cs" />
+    <Compile Include="NotificationHandlers\SetStatusBarLabelTextWhenOpenFileDialogResultSuccessfulNotificationHandler.cs" />
     <Compile Include="Notifications\PipelineBehaviors\DebugMessageTimingsBehavior.cs" />
     <Compile Include="Notifications\SaveFileDialogResultSuccessfulNotification.cs" />
     <Compile Include="Messages\AboutMessage.cs" />

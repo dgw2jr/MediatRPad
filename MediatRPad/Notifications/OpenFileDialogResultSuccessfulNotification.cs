@@ -6,5 +6,7 @@ namespace MediatRPad.Notifications
     public class OpenFileDialogResultSuccessfulNotification : INotification
     {
         public Stream FileStream { get; set; }
+
+        public string FileName { get; set; }
     }
 }
