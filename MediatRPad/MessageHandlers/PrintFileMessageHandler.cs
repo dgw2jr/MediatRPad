@@ -1,10 +1,12 @@
 ﻿using System.Drawing.Printing;
 using System.Windows.Forms;
 using MediatR;
-using MediatRPad.Messages;
 
 namespace MediatRPad.MessageHandlers
 {
+    //[ToolBarButtonMetaData("Print", 3)]
+    public class PrintFileMessage : IRequest { }
+
     public class PrintFileMessageHandler : IRequestHandler<PrintFileMessage>
     {
         public void Handle(PrintFileMessage message)

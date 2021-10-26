@@ -9,5 +9,7 @@ namespace MediatRPad.Controls
         public EventHandler Click { get; set; }
 
         public int Order { get; internal set; }
+
+        public string ParentMenuName { get; set; }
     }
 }

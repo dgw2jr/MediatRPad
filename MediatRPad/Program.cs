@@ -39,6 +39,7 @@ namespace MediatRPad
             builder.RegisterAssemblyTypes(thisAssembly)
                 .Where(t => t.IsAssignableTo<IMainFormComponent>())
                 .AsSelf()
+                .AsImplementedInterfaces()
                 .SingleInstance();
 
             builder.RegisterAssemblyTypes(thisAssembly)
@@ -51,7 +52,8 @@ namespace MediatRPad
                 var button = new ButtonConfiguration
                 {
                     Text = (string)m.Metadata["Text"],
-                    Order = (int)m.Metadata["Order"]
+                    Order = (int)m.Metadata["Order"],
+                    ParentMenuName = (string)m.Metadata["ParentMenuName"],
                 };
 
                 button.Click += (o, e) => { mediator.Send(m.Value); };

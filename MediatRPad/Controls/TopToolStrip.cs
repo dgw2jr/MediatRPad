@@ -6,15 +6,27 @@ namespace MediatRPad.Controls
 {
     public sealed class TopToolStrip : ToolStrip, IMainFormComponent
     {
-        public TopToolStrip(IEnumerable<ButtonConfiguration> buttonConfigs)
+        public TopToolStrip(IEnumerable<IMenuConfiguration> menuConfigurations)
         {
             Dock = DockStyle.Fill;
 
-            foreach (var button in buttonConfigs.OrderBy(bc => bc.Order))
+            foreach (var menuConfiguration in menuConfigurations.OrderBy(c => c.Order))
             {
-                var b = new ToolStripButton(button.Text);
-                b.Click += button.Click;
-                Items.Add(b);
+                var m = new ToolStripMenuItem
+                {
+                    Text = menuConfiguration.Text
+                };
+
+                m.DropDownItems.AddRange(menuConfiguration.Options
+                    .OrderBy(o => o.Order)
+                    .Select(c =>
+                    {
+                        var item = new ToolStripMenuItem(c.Text);
+                        item.Click += c.Click;
+                        return item;
+                    }).ToArray());
+
+                Items.Add(m);
             }
         }
     }

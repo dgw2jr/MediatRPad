@@ -1,11 +1,14 @@
 ﻿using System.Windows.Forms;
 using MediatR;
-using MediatRPad.Messages;
+using MediatRPad.Controls;
 using MediatRPad.Notifications;
 using MediatRPad.Properties;
 
 namespace MediatRPad.MessageHandlers
 {
+    [ToolBarButtonMetaData("Open", 1, "File")]
+    public class OpenFileMessage : IRequest { }
+
     public class OpenFileMessageHandler : IRequestHandler<OpenFileMessage>
     {
         private readonly IMediator _mediator;

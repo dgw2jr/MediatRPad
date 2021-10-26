@@ -8,9 +8,10 @@
     <OutputType>WinExe</OutputType>
     <RootNamespace>MediatRPad</RootNamespace>
     <AssemblyName>MediatRPad</AssemblyName>
-    <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -68,15 +69,15 @@
     <Compile Include="Controls\BottomStatusStripLabel.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Controls\MenuConfiguration.cs" />
+    <Compile Include="MessageHandlers\ExitMessageHandler.cs" />
     <Compile Include="MessageHandlers\OpenFileMessageHandler.cs" />
     <Compile Include="MessageHandlers\PrintFileMessageHandler.cs" />
-    <Compile Include="Messages\PrintFileMessage.cs" />
     <Compile Include="Modules\MediatRModule.cs" />
     <Compile Include="NotificationHandlers\SaveTextBoxContentsToFileWhenSaveFileDialogResultSuccessfulNotificationHandler.cs" />
     <Compile Include="NotificationHandlers\SetStatusBarLabelTextWhenOpenFileDialogResultSuccessfulNotificationHandler.cs" />
     <Compile Include="Notifications\PipelineBehaviors\DebugMessageTimingsBehavior.cs" />
     <Compile Include="Notifications\SaveFileDialogResultSuccessfulNotification.cs" />
-    <Compile Include="Messages\AboutMessage.cs" />
     <Compile Include="MessageHandlers\AboutMessageHandler.cs" />
     <Compile Include="Controls\ButtonConfiguration.cs" />
     <Compile Include="Controls\FileContentsTextBox.cs">
@@ -89,12 +90,10 @@
     <Compile Include="Controls\MainToolStripContainer.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Messages\OpenFileMessage.cs" />
     <Compile Include="Notifications\OpenFileDialogResultSuccessfulNotification.cs" />
     <Compile Include="NotificationHandlers\WriteFileContentsToTextBoxWhenOpenFileDialogResultSuccessfulNotificationHandler.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Messages\SaveFileMessage.cs" />
     <Compile Include="MessageHandlers\SaveFileMessageHandler.cs" />
     <Compile Include="Controls\ToolBarButtonMetaData.cs" />
     <Compile Include="Controls\TopToolStrip.cs">

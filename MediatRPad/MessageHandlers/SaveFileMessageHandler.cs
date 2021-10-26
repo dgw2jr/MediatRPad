@@ -1,11 +1,14 @@
 ﻿using System.Windows.Forms;
 using MediatR;
-using MediatRPad.Messages;
+using MediatRPad.Controls;
 using MediatRPad.Notifications;
 using MediatRPad.Properties;
 
 namespace MediatRPad.MessageHandlers
 {
+    [ToolBarButtonMetaData("Save", 2, "File")]
+    public class SaveFileMessage : IRequest { }
+
     public class SaveFileMessageHandler : IRequestHandler<SaveFileMessage>
     {
         private readonly IMediator _mediator;
