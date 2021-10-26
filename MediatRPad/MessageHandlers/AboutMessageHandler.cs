@@ -5,7 +5,7 @@ using MediatRPad.Properties;
 
 namespace MediatRPad.MessageHandlers
 {
-    [ToolBarButtonMetaData("About", 4, "Help")]
+    [ToolBarButtonMetaData(MenuConstants.Options.About, MenuConstants.Order.About, MenuConstants.Names.Help)]
     public class AboutMessage : IRequest { }
 
     public class AboutMessageHandler : IRequestHandler<AboutMessage>

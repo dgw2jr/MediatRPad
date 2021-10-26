@@ -4,7 +4,7 @@ using System;
 
 namespace MediatRPad.MessageHandlers
 {
-    [ToolBarButtonMetaData("Exit", 3, "File")]
+    [ToolBarButtonMetaData(MenuConstants.Options.Exit, MenuConstants.Order.Exit, MenuConstants.Names.File)]
     public class ExitMessage : IRequest { }
 
     public class ExitMessageHandler : IRequestHandler<ExitMessage>

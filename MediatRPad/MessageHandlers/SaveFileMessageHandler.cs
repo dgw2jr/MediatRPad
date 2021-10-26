@@ -6,7 +6,7 @@ using MediatRPad.Properties;
 
 namespace MediatRPad.MessageHandlers
 {
-    [ToolBarButtonMetaData("Save", 2, "File")]
+    [ToolBarButtonMetaData(MenuConstants.Options.Save, MenuConstants.Order.Save, MenuConstants.Names.File)]
     public class SaveFileMessage : IRequest { }
 
     public class SaveFileMessageHandler : IRequestHandler<SaveFileMessage>

@@ -6,7 +6,7 @@ using MediatRPad.Properties;
 
 namespace MediatRPad.MessageHandlers
 {
-    [ToolBarButtonMetaData("Open", 1, "File")]
+    [ToolBarButtonMetaData(MenuConstants.Options.Open, MenuConstants.Order.Open, MenuConstants.Names.File)]
     public class OpenFileMessage : IRequest { }
 
     public class OpenFileMessageHandler : IRequestHandler<OpenFileMessage>
