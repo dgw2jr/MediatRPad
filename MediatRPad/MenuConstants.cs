@@ -25,5 +25,5 @@
             public const int Print = 2;
             public const int Exit = 3;
         }        
-    }
+    }    
 }

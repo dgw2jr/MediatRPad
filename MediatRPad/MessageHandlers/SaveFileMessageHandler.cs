@@ -22,7 +22,7 @@ namespace MediatRPad.MessageHandlers
         {
             var saveDialog = new SaveFileDialog
             {
-                Filter = Resources.OpenFileDialog_Filter
+                Filter = Settings.OpenFileDialog_Filter
             };
 
             if(saveDialog.ShowDialog() != DialogResult.OK)

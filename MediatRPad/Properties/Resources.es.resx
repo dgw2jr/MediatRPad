@@ -117,31 +117,31 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="AppTitle" xml:space="preserve">
-    <value>MediatRPad</value>
+  <data name="About" xml:space="preserve">
+    <value>Abouto</value>
   </data>
   <data name="AboutText" xml:space="preserve">
     <value>Composition-oriented software example by Don Woodford, 2017</value>
   </data>
-  <data name="About" xml:space="preserve">
-    <value>About</value>
+  <data name="AppTitle" xml:space="preserve">
+    <value>MediatRPad</value>
   </data>
   <data name="Exit" xml:space="preserve">
-    <value>Exit</value>
+    <value>Exito</value>
   </data>
   <data name="File" xml:space="preserve">
-    <value>File</value>
+    <value>Fileo</value>
   </data>
   <data name="Help" xml:space="preserve">
-    <value>Help</value>
+    <value>Helpo</value>
   </data>
   <data name="Open" xml:space="preserve">
-    <value>Open</value>
+    <value>Openo</value>
   </data>
   <data name="Print" xml:space="preserve">
-    <value>Print</value>
+    <value>Printo</value>
   </data>
   <data name="Save" xml:space="preserve">
-    <value>Save</value>
+    <value>Saveo</value>
   </data>
 </root>

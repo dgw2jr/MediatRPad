@@ -22,7 +22,9 @@ namespace MediatRPad.Properties {
                 return defaultInstance;
             }
         }
-        
+
+        public static string OpenFileDialog_Filter => "Text Files|*.txt;*.log";
+
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("Black")]

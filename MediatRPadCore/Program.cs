@@ -1,30 +1,26 @@
-﻿using System;
-using System.Globalization;
-using System.Reflection;
-using System.Resources;
-using System.Threading;
-using System.Windows.Forms;
 using Autofac;
 using Autofac.Extras.AttributeMetadata;
 using Autofac.Features.Metadata;
 using MediatR;
+using MediatRPad;
 using MediatRPad.Controls;
 using MediatRPad.Properties;
+using System.Globalization;
+using System.Reflection;
+using System.Resources;
 
-namespace MediatRPad
+namespace MediatRPadCore
 {
     internal static class Program
     {
         /// <summary>
-        /// The main entry point for the application.
+        ///  The main entry point for the application.
         /// </summary>
         [STAThread]
-        private static void Main()
+        static void Main()
         {
-            CultureInfo.CurrentCulture = new CultureInfo("es");
-
-            Application.EnableVisualStyles();
-            Application.SetCompatibleTextRenderingDefault(false);
+            ApplicationConfiguration.Initialize();
+            //Thread.CurrentThread.CurrentCulture = new CultureInfo("es");
 
             using (var scope = BuildContainer().BeginLifetimeScope())
             {
@@ -36,30 +32,33 @@ namespace MediatRPad
 
         public static IContainer BuildContainer()
         {
-            var thisAssembly = typeof(Program).Assembly;
+            var assemblies = new[] { typeof(Program).Assembly, typeof(MainForm).Assembly };
             var builder = new ContainerBuilder();
 
             builder.RegisterModule<AttributedMetadataModule>();
+            builder.Register(ctx => new ResourceManager(typeof(Resources))).SingleInstance();
+            builder.RegisterType<Localizer>().AsImplementedInterfaces().SingleInstance();
 
             builder.RegisterType<MainForm>().AsSelf().SingleInstance();
-            builder.RegisterAssemblyTypes(thisAssembly)
+            builder.RegisterAssemblyTypes(assemblies)
                 .Where(t => t.IsAssignableTo<IMainFormComponent>())
                 .AsSelf()
                 .AsImplementedInterfaces()
                 .SingleInstance();
 
-            builder.RegisterAssemblyTypes(thisAssembly)
+            builder.RegisterAssemblyTypes(assemblies)
                 .Where(t => t.IsDefined(typeof(ToolBarButtonMetaData)))
                 .AsImplementedInterfaces();
 
             builder.RegisterAdapter<Meta<IRequest>, ButtonConfiguration>((ctx, m) =>
             {
+                var localizer = ctx.Resolve<ILocalizer>();
                 var mediator = ctx.Resolve<IMediator>();
                 var button = new ButtonConfiguration
                 {
-                    Text = new ResourceManager(typeof(Resources)).GetString((string)m.Metadata["Text"]),
-                    Order = (int)m.Metadata["Order"],
-                    ParentMenuName = (string)m.Metadata["ParentMenuName"],
+                    Text = localizer.Localize(m.Metadata["Text"]!.ToString()!),
+                    Order = (int)m.Metadata["Order"]!,
+                    ParentMenuName = m.Metadata["ParentMenuName"]!.ToString(),
                 };
 
                 button.Click += (o, e) => { mediator.Send(m.Value); };
@@ -67,9 +66,11 @@ namespace MediatRPad
                 return button;
             });
 
-            builder.RegisterAssemblyModules(thisAssembly);
-            
+            builder.RegisterAssemblyModules(assemblies);
+
             return builder.Build();
-        }
+        }        
     }
+
+    
 }

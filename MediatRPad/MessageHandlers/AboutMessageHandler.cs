@@ -1,4 +1,5 @@
-﻿using System.Windows.Forms;
+﻿using System.Resources;
+using System.Windows.Forms;
 using MediatR;
 using MediatRPad.Controls;
 using MediatRPad.Properties;
@@ -12,7 +13,7 @@ namespace MediatRPad.MessageHandlers
     {
         public void Handle(AboutMessage message)
         {
-            MessageBox.Show(Resources.AboutText);
+            MessageBox.Show(new ResourceManager(typeof(Resources)).GetString("AboutText"));
         }
     }
 }
