@@ -26,18 +26,10 @@ namespace MediatRPad.Modules
                 .AsImplementedInterfaces();
 
             // request handlers
-            builder.Register<SingleInstanceFactory>(ctx =>
+            builder.Register<ServiceFactory>(ctx =>
                 {
                     var c = ctx.Resolve<IComponentContext>();
                     return t => c.ResolveOptional(t);
-                })
-                .InstancePerLifetimeScope();
-
-            // notification handlers
-            builder.Register<MultiInstanceFactory>(ctx =>
-                {
-                    var c = ctx.Resolve<IComponentContext>();
-                    return t => (IEnumerable<object>)c.Resolve(typeof(IEnumerable<>).MakeGenericType(t));
                 })
                 .InstancePerLifetimeScope();
 

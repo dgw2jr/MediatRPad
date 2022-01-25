@@ -1,4 +1,6 @@
-﻿using System.Windows.Forms;
+﻿using System.Threading;
+using System.Threading.Tasks;
+using System.Windows.Forms;
 using MediatR;
 using MediatRPad.Controls;
 using MediatRPad.Notifications;
@@ -9,7 +11,7 @@ namespace MediatRPad.MessageHandlers
     [ToolBarButtonMetaData(MenuConstants.Options.Open, MenuConstants.Order.Open, MenuConstants.Names.File)]
     public class OpenFileMessage : IRequest { }
 
-    public class OpenFileMessageHandler : IRequestHandler<OpenFileMessage>
+    public class OpenFileMessageHandler : IRequestHandler<OpenFileMessage, Unit>
     {
         private readonly IMediator _mediator;
 
@@ -18,7 +20,7 @@ namespace MediatRPad.MessageHandlers
             _mediator = mediator;
         }
 
-        public void Handle(OpenFileMessage message)
+        public async Task<Unit> Handle(OpenFileMessage message, CancellationToken token)
         {
             var dlg = new OpenFileDialog
             {
@@ -27,13 +29,15 @@ namespace MediatRPad.MessageHandlers
 
             if (dlg.ShowDialog() != DialogResult.OK)
             {
-                return;
+                return await Unit.Task;
             }
 
             using (var stream = dlg.OpenFile())
             {
-                _mediator.Publish(new OpenFileDialogResultSuccessfulNotification { FileStream = stream, FileName = dlg.FileName });
+               await _mediator.Publish(new OpenFileDialogResultSuccessfulNotification { FileStream = stream, FileName = dlg.FileName });
             }
+
+            return await Unit.Task;
         }
     }
 }

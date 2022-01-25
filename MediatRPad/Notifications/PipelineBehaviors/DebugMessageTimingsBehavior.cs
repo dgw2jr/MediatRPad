@@ -1,4 +1,5 @@
 ﻿using System.Diagnostics;
+using System.Threading;
 using System.Threading.Tasks;
 using MediatR;
 
@@ -6,7 +7,7 @@ namespace MediatRPad.Notifications.PipelineBehaviors
 {
     public class DebugMessageTimingsBehavior<TRequest, TResponse> : IPipelineBehavior<TRequest, TResponse>
     {
-        public Task<TResponse> Handle(TRequest request, RequestHandlerDelegate<TResponse> next)
+        public Task<TResponse> Handle(TRequest request, CancellationToken token, RequestHandlerDelegate<TResponse> next)
         {
             var messageType = request.GetType().Name;
 

@@ -1,4 +1,6 @@
 using System.IO;
+using System.Threading;
+using System.Threading.Tasks;
 using MediatR;
 using MediatRPad.Controls;
 using MediatRPad.Notifications;
@@ -14,12 +16,14 @@ namespace MediatRPad.NotificationHandlers
             _textBox = textBox;
         }
 
-        public void Handle(SaveFileDialogResultSuccessfulNotification notification)
+        public async Task Handle(SaveFileDialogResultSuccessfulNotification notification, CancellationToken token)
         {
             using (var writer = new StreamWriter(notification.FileStream))
             {
                 writer.Write(_textBox.Text);
             }
+
+            await Task.CompletedTask;
         }
     }
 }

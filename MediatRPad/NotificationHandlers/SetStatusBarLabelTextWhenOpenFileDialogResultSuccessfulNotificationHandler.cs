@@ -1,6 +1,8 @@
 ﻿using MediatR;
 using MediatRPad.Controls;
 using MediatRPad.Notifications;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace MediatRPad.NotificationHandlers
 {
@@ -13,9 +15,11 @@ namespace MediatRPad.NotificationHandlers
             _label = label;
         }
 
-        public void Handle(OpenFileDialogResultSuccessfulNotification notification)
+        public async Task Handle(OpenFileDialogResultSuccessfulNotification notification, CancellationToken token)
         {
             _label.Text = notification.FileName;
+
+            await Task.CompletedTask;
         }
     }
 }

@@ -1,4 +1,6 @@
-﻿using System.Windows.Forms;
+﻿using System.Threading;
+using System.Threading.Tasks;
+using System.Windows.Forms;
 using MediatR;
 using MediatRPad.Controls;
 using MediatRPad.Notifications;
@@ -9,7 +11,7 @@ namespace MediatRPad.MessageHandlers
     [ToolBarButtonMetaData(MenuConstants.Options.Save, MenuConstants.Order.Save, MenuConstants.Names.File)]
     public class SaveFileMessage : IRequest { }
 
-    public class SaveFileMessageHandler : IRequestHandler<SaveFileMessage>
+    public class SaveFileMessageHandler : IRequestHandler<SaveFileMessage, Unit>
     {
         private readonly IMediator _mediator;
 
@@ -18,7 +20,7 @@ namespace MediatRPad.MessageHandlers
             _mediator = mediator;
         }
 
-        public void Handle(SaveFileMessage message)
+        public async Task<Unit> Handle(SaveFileMessage message, CancellationToken token)
         {
             var saveDialog = new SaveFileDialog
             {
@@ -27,13 +29,15 @@ namespace MediatRPad.MessageHandlers
 
             if(saveDialog.ShowDialog() != DialogResult.OK)
             {
-                return;
+                return await Unit.Task;
             }
 
             using (var stream = saveDialog.OpenFile())
             {
-                _mediator.Publish(new SaveFileDialogResultSuccessfulNotification { FileStream = stream });
+                await _mediator.Publish(new SaveFileDialogResultSuccessfulNotification { FileStream = stream });
             }
+
+            return await Unit.Task;
         }
     }
 }
